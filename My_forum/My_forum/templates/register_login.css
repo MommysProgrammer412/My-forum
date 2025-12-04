@@ -1,0 +1,29 @@
+.logo{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+html{
+    height: 100vh;
+}
+
+img{
+    border: 2px solid red;
+    width: 620px;
+    border-radius: 25px;
+}
+.zoom{
+    zoom:1.2;
+}
