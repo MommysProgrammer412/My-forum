@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w@u@wcm0h&l2nd4-9!^ps+thzu(!(bh$n$i@(hj0)$wdn3f#sj'
+# Загружаем переменные из .env
+load_dotenv() 
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'My_forum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'My_forum' / 'My_forum' / 'templates'], #  Чтобы централизовать общие шаблоны в одной папке
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,8 +123,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'My_forum' / 'My_forum' / 'static']  # Папка для общих статических файлов
+STATIC_ROOT = BASE_DIR / 'static'  # Папка для статических файлов после сборки проекта
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # Папка для медиа-файлов после сборки проекта (аватарки и вложения)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User' # Использование кастомной модели пользователя
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для разработки: отправка писем в консоль
