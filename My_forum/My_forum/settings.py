@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'My_forum' / 'My_forum' / 'static']  # Папка для общих статических файлов
+STATICFILES_DIRS = [BASE_DIR / 'My_forum' / 'static']  # Папка для общих статических файлов
 STATIC_ROOT = BASE_DIR / 'static'  # Папка для статических файлов после сборки проекта
 
 MEDIA_URL = '/media/'

@@ -21,14 +21,14 @@ class PasswordResetToken(models.Model):
         return f"{self.token_hash}"
 
 class Notification(models.Model):
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
-    author = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='notifications_received')
+    author = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='notifications_sent')
     verb = models.CharField(max_length=8, choices=[('like', 'Лайк'), ('comment', 'Комментарий'), ('follow', 'Подписка'), ('birthday', 'День Рождения')])
     target = models.CharField(max_length=7, null=True, blank=True, choices=[('post', 'Пост'), ('comment', 'Комментарий'), ('user', 'Пользователь')])
     is_read = models.BooleanField(default=False)
     post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, null=True, blank=True)
     comment = models.ForeignKey('posts.Comment', on_delete=models.CASCADE, null=True, blank=True)
-    follow = models.ForeignKey('users.User', on_delete=models.CASCADE, null=True, blank=True)
+    follow = models.ForeignKey('users.User', on_delete=models.CASCADE, null=True, blank=True, related_name='notifications_about_follow')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"Уведомление для {self.user} - {self.verb}"
