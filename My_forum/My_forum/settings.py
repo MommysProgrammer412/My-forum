@@ -137,3 +137,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User' # Использование кастомной модели пользователя
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для разработки: отправка писем в консоль
+
+# USERNAME_FIELD = 'email' чтобы использовать email в качестве логина
