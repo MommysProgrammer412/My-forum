@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    birthday = models.DateField()
+    birthday = models.DateField(blank=True, null=True)
     status = models.CharField(max_length=150, null=True, blank=True)
     sex = models.CharField(max_length=1, choices=[('М', 'Мужчина'), ('Ж', 'Женщина')])
     email = models.EmailField(unique=True, blank=False)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    blocked_status = models.CharField(default='active', choices=[('active', 'Активный'), ('blocked', 'Заблокированный'), ('hidden', 'Скрытый')], max_length=7)
+    blocked_status = models.CharField(default='unhide', choices=[('active', 'Активный'), ('blocked', 'Заблокированный'), ('hidden', 'Скрытый'), ('unhide', 'Раскрыть')], max_length=7)
     follow = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     block = models.ManyToManyField('self', symmetrical=False)
     def __str__(self):
