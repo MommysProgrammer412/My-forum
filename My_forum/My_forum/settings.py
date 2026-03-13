@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'core',
+    'My_forum',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'My_forum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'My_forum' / 'My_forum' / 'templates'], #  Чтобы централизовать общие шаблоны в одной папке
+        'DIRS': [BASE_DIR / 'My_forum' / 'templates'], #  Чтобы централизовать общие шаблоны в одной папке
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'My_forum' / 'static']  # Папка для общих статических файлов
 STATIC_ROOT = BASE_DIR / 'static'  # Папка для статических файлов после сборки проекта
 
@@ -142,3 +143,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для ра�
 
 LANGUAGE_CODE = 'ru-ru'
 USE_L10N = True  # Включает локализацию ввода (дата рождения)
+
+LOGIN_REDIRECT_URL = 'subscriptions'  # перенаправление на страницу подписок после входа/регистрации
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # куда уходить после выхода (на логин)

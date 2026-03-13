@@ -18,8 +18,3 @@ html{
 .zoom{
     zoom:1.3;
 }
-.scrollspy-area{
-    height: 100vh;
-    overflow-y: auto;
-    position: relative;
-}

@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # для делегации в урлы нужного приложения
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
+
+app_name = 'My_forum' # Позволит писать {% url 'My_forum:subscrations' %}
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Стандартная админка
     path('accounts/', include('users.urls')), # Делегируем в users через префикс accounts/
-]
+    path('index/', include('posts.urls')), # Делегируем в posts через префикс index/
+    path('search/', views.search_view, name='search'),
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
