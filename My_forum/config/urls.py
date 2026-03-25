@@ -1,5 +1,5 @@
 """
-URL configuration for My_forum project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 
-app_name = 'My_forum' # Позволит писать {% url 'My_forum:subscrations' %}
+app_name = 'My_forum.config' # Исправлено после переименования приложения
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Стандартная админка
